@@ -25,13 +25,18 @@ namespace Nightmare
 		public Light faceLight;
         float effectsDisplayTime = 0.2f;
         int grenadeStock = 99;
-  
+        string F1keyname, F2keyname;          // mapped key name of Fire1, Fire2
+
         private UnityAction listener;
 
         void Awake ()
         {
             // Create a layer mask for the Shootable layer.
             shootableMask = LayerMask.GetMask ("Shootable", "Enemy");
+
+            // Set key mappings
+            F1keyname = this.gameObject.transform.parent.name.Equals("Player") ? "Fire1" : "Fire1_2P";
+            F2keyname = this.gameObject.transform.parent.name.Equals("Player") ? "Fire2" : "Fire2_2P";
 
             // Set up the references.
             gunParticles = GetComponent<ParticleSystem> ();
@@ -67,14 +72,14 @@ namespace Nightmare
             if (timer >= timeBetweenBullets && Time.timeScale != 0)
             {
                 // If the Fire1 button is being press and it's time to fire...
-                if (Input.GetButton("Fire2") && grenadeStock > 0)
-                {
-                    // ... shoot a grenade.
-                    ShootGrenade();
-                }
+                //if (Input.GetButton(F2keyname) && grenadeStock > 0)
+                //{
+                //    // ... shoot a grenade.
+                //    ShootGrenade();
+                //}
 
                 // If the Fire1 button is being press and it's time to fire...
-                else if (Input.GetButton("Fire1"))
+                if (Input.GetButton(F1keyname))
                 {
                     // ... shoot the gun.
                     Shoot();
