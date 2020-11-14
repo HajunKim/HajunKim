@@ -39,11 +39,12 @@ namespace Nightmare
         {
             if (isPaused)
                 return;
-
+            float h, v;
+            
             // Store the input axes.
-            float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-            float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
-
+            h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+            v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+            
             // Move the player around the scene.
             Move (h, v);
 

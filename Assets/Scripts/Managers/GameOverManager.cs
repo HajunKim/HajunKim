@@ -8,10 +8,12 @@ namespace Nightmare
     public class GameOverManager : MonoBehaviour
     {
         private PlayerHealth playerHealth;
+        private Target target;
         private float restartDelay = 5f;
         
         Animator anim;
         float restartTimer;
+        bool isEnding = false;
 
         LevelManager lm;
         private UnityEvent listener;
@@ -19,16 +21,27 @@ namespace Nightmare
         void Awake()
         {
             playerHealth = FindObjectOfType<PlayerHealth>();
+            target = FindObjectOfType<Target>();
             anim = GetComponent<Animator>();
         }
         void Update()
         {
+            // If the target is activated
+            if (target.isVitalized)
+            {
+                anim.SetTrigger("Win");
+                isEnding = true;
+            }
             // If the player has run out of health...
-            if (playerHealth.currentHealth <= 0)
+            else if (playerHealth.currentHealth <= 0)
             {
                 // ... tell the animator the game is over.
                 anim.SetTrigger("GameOver");
-
+                isEnding = true;
+            }
+            // if ending condition met 
+            if (isEnding)
+            {
                 // .. increment a timer to count up to restarting.
                 restartTimer += Time.deltaTime;
 

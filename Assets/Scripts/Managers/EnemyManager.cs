@@ -10,7 +10,7 @@ namespace Nightmare
         public Transform[] spawnPoints;
 
         private float timer;
-        private int spawned = 0;
+        //private int spawned = 0;
 
         void Start ()
         {
