@@ -75,16 +75,20 @@ public class SoundModule : MonoBehaviour
 
     void Update()
     {
-        AnalyzeSound();
-        if (verbose && playerPitch > 100)
+        if (!audioSource.mute)
         {
-            //Debug.Log("RMS: " + rmsVal.ToString("F2"));
-            Debug.Log(playerdB.ToString("F1") + " dB | " + "Freq: " + playerPitch + " Hz | Note: " + playerNote + " | mapping value : " + playerNoteMappingValue);
-        }
-        if (isMuted)
-        {
-            MakePlayerMute(5);
-            isMuted = false;
+            AnalyzeSound();
+            if (verbose && playerPitch > 100)
+            {
+                //Debug.Log("RMS: " + rmsVal.ToString("F2"));
+                Debug.Log(playerdB.ToString("F1") + " dB | " + "Freq: " + playerPitch + " Hz | Note: " + playerNote + " | mapping value : " + playerNoteMappingValue);
+            }
+            // just to check the mute state
+            if (isMuted)
+            {
+                MakePlayerMute(5);
+                isMuted = false;
+            }
         }
     }
 
@@ -150,7 +154,7 @@ public class SoundModule : MonoBehaviour
     void MakePlayerMute(int timeAmount)
     {
         if (verbose) Debug.Log("mute on for " + timeAmount + " secs");
-        audioSource.mute = true;
+        if (!audioSource.mute) ChangeMuteState();
         Invoke("ChangeMuteState", timeAmount);
     }
 }
