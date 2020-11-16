@@ -287,10 +287,10 @@ PrefabInstance:
     - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: healthSlider
       value: 
-      objectReference: {fileID: 1385245550}
+      objectReference: {fileID: 1500328270}
     - target: {fileID: 4438454983242462358, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: useMouse
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4438454983242494581, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: m_Name
@@ -2584,7 +2584,7 @@ PrefabInstance:
       objectReference: {fileID: 1385245550}
     - target: {fileID: 4438454983242462358, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: useMouse
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4438454983242494581, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: m_Name
