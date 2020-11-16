@@ -151,7 +151,7 @@ public class SoundModule : MonoBehaviour
     }
 
     // Make Player Mute during specific timeAmount (in sec)
-    void MakePlayerMute(int timeAmount)
+    void MakePlayerMute(float timeAmount)
     {
         if (verbose) Debug.Log("mute on for " + timeAmount + " secs");
         if (!audioSource.mute) ChangeMuteState();
