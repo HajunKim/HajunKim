@@ -42,7 +42,7 @@ namespace Nightmare
             playerMovement.enabled = true;
             playerShooting.enabled = true;
 
-            anim.SetBool("IsDead", false);
+            //anim.SetTrigger("IsDead");
         }
 
 
@@ -100,7 +100,7 @@ namespace Nightmare
             playerShooting.DisableEffects();
 
             // Tell the animator that the player is dead.
-            anim.SetBool("IsDead", true);
+            anim.SetTrigger("IsDead");
 
             // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
             playerAudio.clip = deathClip;

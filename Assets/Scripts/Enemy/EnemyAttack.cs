@@ -15,6 +15,7 @@ namespace Nightmare
         bool playerInRange;
         float timer;
         int n_player;
+        int target_player; // target player that will be damaged
 
         void Awake ()
         {
@@ -46,6 +47,7 @@ namespace Nightmare
                 {
                     // ... the player is in range.
                     playerInRange = true;
+                    target_player = i;
                 }
             }
         }
@@ -97,14 +99,11 @@ namespace Nightmare
             // Reset the timer.
             timer = 0f;
 
-            for (int i=0; i < n_player; i++)
+            // If the player has health to lose...
+            if (playerHealth[target_player].currentHealth > 0)
             {
-                // If the player has health to lose...
-                if (playerHealth[i].currentHealth > 0)
-                {
-                    // ... damage the player.
-                    playerHealth[i].TakeDamage(attackDamage);
-                }
+                // ... damage the player.
+                playerHealth[target_player].TakeDamage(attackDamage);
             }
         }
     }
