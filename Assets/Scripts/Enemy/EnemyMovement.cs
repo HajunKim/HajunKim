@@ -15,16 +15,27 @@ namespace Nightmare
         public float psychicLevels = 0.2f;
 
         float currentVision; 
-        Transform player;
-        PlayerHealth playerHealth;
+        Transform[] playerPosition;
+        GameObject[] player;
+        PlayerHealth[] playerHealth;
         EnemyHealth enemyHealth;
         NavMeshAgent nav;
         public float timer = 0f;
+        int n_player;
+        int target_player;
 
         void Awake ()
         {
-            player = GameObject.FindGameObjectWithTag ("Player").transform;
-            playerHealth = player.GetComponent <PlayerHealth> ();
+            player = GameObject.FindGameObjectsWithTag("Player");
+            n_player = player.Length;
+            target_player = Random.Range(0, n_player);
+            playerPosition = new Transform[n_player];
+            playerHealth = new PlayerHealth[n_player];
+            for (int i=0; i<n_player;i++)
+            {
+                playerPosition[i] = player[i].transform;
+                playerHealth[i] = player[i].GetComponent<PlayerHealth>();
+            }
             enemyHealth = GetComponent <EnemyHealth> ();
             nav = GetComponent<NavMeshAgent>();
 
@@ -49,11 +60,26 @@ namespace Nightmare
         void Update ()
         {
             // If both the enemy and the player have health left...
-            if (enemyHealth.CurrentHealth() > 0 && playerHealth.currentHealth > 0)
+            if (enemyHealth.CurrentHealth() > 0)
             {
-                nav.SetDestination(player.position);
-                //LookForPlayer();
-                //WanderOrIdle();
+                if (playerHealth[target_player].currentHealth > 0)
+                {
+                    nav.SetDestination(playerPosition[target_player].position);
+                    //LookForPlayer();
+                    //WanderOrIdle();
+                }
+                else
+                {
+                    for (int i=0; i<n_player;i++)
+                    {
+                        if (playerHealth[i].currentHealth > 0)
+                        {
+                            target_player = i;
+                            nav.SetDestination(playerPosition[target_player].position);
+                            break;
+                        }
+                    }
+                }
             }
             else
             {
@@ -81,7 +107,7 @@ namespace Nightmare
 
         private void LookForPlayer()
         {
-            TestSense(player.position, currentVision);
+            TestSense(playerPosition[target_player].position, currentVision);
         }
 
         private void HearPoint(Vector3 position)
@@ -99,7 +125,7 @@ namespace Nightmare
 
         public void GoToPlayer()
         {
-            GoToPosition(player.position);
+            GoToPosition(playerPosition[target_player].position);
         }
 
         private void GoToPosition(Vector3 position)

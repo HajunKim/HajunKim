@@ -487,6 +487,7 @@ ModelImporter:
     extraExposedTransformPaths:
     - PlayerCtrl/Ctrl_Grp/Gun 1/GunBarrelStretch/GunBarrelEnd
     extraUserProperties: []
+
     clipAnimations:
     - serializedVersion: 16
       name: Move
@@ -1075,3 +1076,4 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+

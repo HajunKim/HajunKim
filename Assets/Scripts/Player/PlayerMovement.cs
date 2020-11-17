@@ -26,8 +26,9 @@ namespace Nightmare
             // Create a layer mask for the floor layer.
             floorMask = LayerMask.GetMask ("Floor");
 #endif
-            GameObject player2P = GameObject.Find("Player2P");
-    
+            GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
+            if (player.Length > 1) useMouse = false;
+            
             // Set Cameramovement
             if (!useMouse)
             {

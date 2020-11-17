@@ -9,17 +9,24 @@ namespace Nightmare
         public int attackDamage = 10;
 
         Animator anim;
-        GameObject player;
-        PlayerHealth playerHealth;
+        GameObject[] player;
+        PlayerHealth[] playerHealth;
         EnemyHealth enemyHealth;
         bool playerInRange;
         float timer;
+        int n_player;
+        int target_player; // target player that will be damaged
 
         void Awake ()
         {
             // Setting up the references.
-            player = GameObject.FindGameObjectWithTag ("Player");
-            playerHealth = player.GetComponent <PlayerHealth> ();
+            player = GameObject.FindGameObjectsWithTag ("Player");
+            n_player = player.Length;
+            playerHealth = new PlayerHealth[n_player];
+            for (int i = 0; i < n_player; i++)
+            {
+                playerHealth[i] = player[i].GetComponent<PlayerHealth>();
+            }
             enemyHealth = GetComponent<EnemyHealth>();
             anim = GetComponent <Animator> ();
 
@@ -33,21 +40,30 @@ namespace Nightmare
 
         void OnTriggerEnter (Collider other)
         {
-            // If the entering collider is the player...
-            if(other.gameObject == player)
+            for (int i=0; i < n_player; i++)
             {
-                // ... the player is in range.
-                playerInRange = true;
+                // If the entering collider is the player...
+                if (other.gameObject == player[i])
+                {
+                    // ... the player is in range.
+                    playerInRange = true;
+                    target_player = i;
+                    break;
+                }
             }
         }
 
         void OnTriggerExit (Collider other)
         {
-            // If the exiting collider is the player...
-            if(other.gameObject == player)
+            for (int i = 0; i < n_player; i++)
             {
-                // ... the player is no longer in range.
-                playerInRange = false;
+                // If the exiting collider is the player...
+                if (other.gameObject == player[i])
+                {
+                    // ... the player is no longer in range.
+                    playerInRange = false;
+                    break;
+                }
             }
         }
 
@@ -65,13 +81,17 @@ namespace Nightmare
                 // ... attack.
                 Attack ();
             }
-
-            // If the player has zero or less health...
-            if(playerHealth.currentHealth <= 0)
+            int n_death_player = 0;
+            for (int i=0; i < n_player; i++)
             {
-                // ... tell the animator the player is dead.
-                anim.SetTrigger ("PlayerDead"); 
+                // If the player has zero or less health...
+                if (playerHealth[i].currentHealth <= 0)
+                {
+                    // ... tell the animator the player is dead.
+                    n_death_player++;
+                }
             }
+            if (n_death_player == n_player) anim.SetTrigger("PlayerDead");
         }
 
         void Attack ()
@@ -80,10 +100,10 @@ namespace Nightmare
             timer = 0f;
 
             // If the player has health to lose...
-            if(playerHealth.currentHealth > 0)
+            if (playerHealth[target_player].currentHealth > 0)
             {
                 // ... damage the player.
-                playerHealth.TakeDamage (attackDamage);
+                playerHealth[target_player].TakeDamage(attackDamage);
             }
         }
     }

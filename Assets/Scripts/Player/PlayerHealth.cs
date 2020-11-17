@@ -27,12 +27,10 @@ namespace Nightmare
         void Awake()
         {
             // Setting up the references.
-
             anim = GetComponent<Animator>();
             playerAudio = GetComponent<AudioSource>();
             playerMovement = GetComponent<PlayerMovement>(); // just use script name
             playerShooting = GetComponentInChildren<PlayerShooting>();
-            // soundModule = GetComponent<SoundModule>(); // add for "mute" feature            
 
             ResetPlayer();
         }
@@ -40,7 +38,6 @@ namespace Nightmare
         public void ResetPlayer()
         {
             // Set the initial health of the player.
-
             playerMovement.enabled = true;
             playerShooting.enabled = true;
             currentHealth = startingHealth;
@@ -129,6 +126,7 @@ namespace Nightmare
         {
             // Set the death flag so this function won't be called again.
 
+
             isDead = true;
 
             // Turn off any remaining shooting effects.
@@ -151,10 +149,7 @@ namespace Nightmare
             SoundModule.Instance.MakePlayerMute(muteAmount);
         }
 
-        IEnumerator WaitForIt()
-        {
-            yield return new WaitForSeconds(5f);
-        }
+
 
         public void RestartLevel()
         {
