@@ -33,12 +33,14 @@ namespace Nightmare
                 isEnding = true;
             }
             // If the player has run out of health...
-            else if (playerHealth.currentHealth <= 0)
-            {
-                // ... tell the animator the game is over.
-                anim.SetTrigger("GameOver");
-                isEnding = true;
-            }
+
+            // else if (playerHealth.currentHealth <= 0)
+            // {
+            //     // ... tell the animator the game is over.
+            //     anim.SetTrigger("GameOver");
+            //     isEnding = true;
+            // }
+
             // if ending condition met 
             if (isEnding)
             {

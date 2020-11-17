@@ -48,6 +48,7 @@ namespace Nightmare
                     // ... the player is in range.
                     playerInRange = true;
                     target_player = i;
+                    break;
                 }
             }
         }
@@ -61,9 +62,9 @@ namespace Nightmare
                 {
                     // ... the player is no longer in range.
                     playerInRange = false;
+                    break;
                 }
             }
-
         }
 
         void Update ()
@@ -80,7 +81,6 @@ namespace Nightmare
                 // ... attack.
                 Attack ();
             }
-
             int n_death_player = 0;
             for (int i=0; i < n_player; i++)
             {

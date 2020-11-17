@@ -28,7 +28,7 @@ namespace Nightmare
 #endif
             GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
             if (player.Length > 1) useMouse = false;
-
+            
             // Set Cameramovement
             if (!useMouse)
             {
