@@ -280,10 +280,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 304456634, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a7c50cbe23223f459a1f1e086db2542, type: 3}
     - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: hurtClip
       value: 
       objectReference: {fileID: 8300000, guid: 9922a12f34d0a084aab32de985459723, type: 3}
+    - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
+      propertyPath: deathClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e5b1d9b81ca6f6418fabdd62a372304, type: 3}
     - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: damageImage
       value: 
@@ -798,7 +806,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4fff99673a41e24439d527ad0bd6b569, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0b7e81af58b28024096b190465e697de, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.233
   m_Pitch: 1
@@ -2574,6 +2582,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 304456634, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b98a7bdd5f0c9594c9f06054b19d8ba3, type: 3}
     - target: {fileID: 304456638, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 1
@@ -2582,6 +2594,10 @@ PrefabInstance:
       propertyPath: hurtClip
       value: 
       objectReference: {fileID: 8300000, guid: 9922a12f34d0a084aab32de985459723, type: 3}
+    - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
+      propertyPath: deathClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e5b1d9b81ca6f6418fabdd62a372304, type: 3}
     - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: damageImage
       value: 
