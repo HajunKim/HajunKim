@@ -12,6 +12,7 @@ namespace Nightmare
         public Slider healthSlider;
         public Image damageImage;
         public AudioClip deathClip;
+        public AudioClip hurtClip;
         public float flashSpeed = 5f;
         public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
         public bool godMode = false;
@@ -20,16 +21,18 @@ namespace Nightmare
         AudioSource playerAudio;
         PlayerMovement playerMovement;
         PlayerShooting playerShooting;
-        bool isDead;
+        public bool isDead;
         public bool damaged;
 
         void Awake()
         {
             // Setting up the references.
+
             anim = GetComponent<Animator>();
             playerAudio = GetComponent<AudioSource>();
             playerMovement = GetComponent<PlayerMovement>(); // just use script name
             playerShooting = GetComponentInChildren<PlayerShooting>();
+            // soundModule = GetComponent<SoundModule>(); // add for "mute" feature            
 
             ResetPlayer();
         }
@@ -37,12 +40,13 @@ namespace Nightmare
         public void ResetPlayer()
         {
             // Set the initial health of the player.
-            currentHealth = startingHealth; 
 
             playerMovement.enabled = true;
             playerShooting.enabled = true;
-
-            anim.SetBool("IsDead", false);
+            currentHealth = startingHealth;
+            anim.ResetTrigger("IsDead");
+            isDead = false;
+            anim.SetBool("IsWalking",true);
         }
 
 
@@ -68,39 +72,70 @@ namespace Nightmare
 
         public void TakeDamage(int amount)
         {
-            if (godMode)
+            if (godMode || isDead) 
                 return;
 
-            // Set the damaged flag so the screen will flash.
-            damaged = true;
+            else {
 
-            // Reduce the current health by the damage amount.
-            currentHealth -= amount;
+                // Set the damaged flag so the screen will flash.
+                damaged = true;
 
-            // Set the health bar's value to the current health.
-            healthSlider.value = currentHealth;
+                // Reduce the current health by the damage amount.
+                currentHealth -= amount;
 
-            // Play the hurt sound effect.
-            playerAudio.Play();
+                // Set the health bar's value to the current health.
+                healthSlider.value = currentHealth;
 
-            // If the player has lost all it's health and the death flag hasn't been set yet...
-            if (currentHealth <= 0 && !isDead)
-            {
-                // ... it should die.
-                Death();
+                // Play the hurt sound effect.
+                // playerAudio.Play();
+                playerAudio.clip = hurtClip;
+                playerAudio.Play();
+
+                // If the player has lost all it's health and the death flag hasn't been set yet...
+                if (currentHealth <= 0 && !isDead)
+                {
+                    // ... it should die.
+                    Death();
+                }
+
+                // Invoke("ResetPlayer", 5f);
+                
             }
+
+
         }
+
+        // void Death()
+        // {
+        //     // Set the death flag so this function won't be called again.
+        //     isDead = true;
+
+        //     // Turn off any remaining shooting effects.
+        //     playerShooting.DisableEffects();
+
+        //     // Tell the animator that the player is dead.
+        //     anim.SetBool("IsDead", true);
+
+        //     // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
+        //     playerAudio.clip = deathClip;
+        //     playerAudio.Play();
+
+        //     // Turn off the movement and shooting scripts.
+        //     playerMovement.enabled = false;
+        //     playerShooting.enabled = false;
+        // }
 
         void Death()
         {
             // Set the death flag so this function won't be called again.
+
             isDead = true;
 
             // Turn off any remaining shooting effects.
             playerShooting.DisableEffects();
 
             // Tell the animator that the player is dead.
-            anim.SetBool("IsDead", true);
+            anim.SetTrigger("IsDead");
 
             // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
             playerAudio.clip = deathClip;
@@ -109,6 +144,16 @@ namespace Nightmare
             // Turn off the movement and shooting scripts.
             playerMovement.enabled = false;
             playerShooting.enabled = false;
+
+            float muteAmount = 5f;
+
+            Invoke("ResetPlayer", muteAmount);
+            SoundModule.Instance.MakePlayerMute(muteAmount);
+        }
+
+        IEnumerator WaitForIt()
+        {
+            yield return new WaitForSeconds(5f);
         }
 
         public void RestartLevel()
