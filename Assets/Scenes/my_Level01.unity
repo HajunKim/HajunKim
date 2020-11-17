@@ -281,6 +281,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
+      propertyPath: hurtClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9922a12f34d0a084aab32de985459723, type: 3}
+    - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: damageImage
       value: 
       objectReference: {fileID: 884700442}
@@ -2574,6 +2578,10 @@ PrefabInstance:
       propertyPath: m_RenderingLayerMask
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
+      propertyPath: hurtClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9922a12f34d0a084aab32de985459723, type: 3}
     - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: damageImage
       value: 
