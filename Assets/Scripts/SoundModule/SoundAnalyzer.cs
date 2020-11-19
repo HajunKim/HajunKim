@@ -128,6 +128,8 @@ class SoundAnalyzer
     public string GetNote(float freq)
     {
         float baseFreq;
+        float hardMode = 5.0f;
+        float easyMode = 20.0f;
 
         foreach (var note in this.noteBaseFreqs)
         {
@@ -135,7 +137,7 @@ class SoundAnalyzer
 
             for (int i = 0; i < 9; i++)
             {
-                if ((freq >= baseFreq - 5.0) && (freq < baseFreq + 5.0) || (freq == baseFreq))
+                if ((freq >= baseFreq - easyMode) && (freq < baseFreq + easyMode) || (freq == baseFreq))
                 {
                     return note.Key + i;
                 }
