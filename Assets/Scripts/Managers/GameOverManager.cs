@@ -14,6 +14,8 @@ namespace Nightmare
         Animator anim;
         float restartTimer;
         bool isEnding = false;
+        float timer = 0.0f;
+        int waitingTime = 2;
 
         LevelManager lm;
         private UnityEvent listener;
@@ -29,8 +31,14 @@ namespace Nightmare
             // If the target is activated
             if (target.isVitalized)
             {
-                anim.SetTrigger("Win");
-                isEnding = true;
+                timer += Time.deltaTime;
+                if (timer > waitingTime)
+                {
+                    anim.SetTrigger("Win");
+                    isEnding = true;
+                    //Action
+                    timer = 0;
+                }
             }
             // If the player has run out of health...
 

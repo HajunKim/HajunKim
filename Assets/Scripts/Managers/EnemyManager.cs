@@ -8,6 +8,8 @@ namespace Nightmare
         public GameObject enemy;
         public float spawnTime = 3f;
         public Transform[] spawnPoints;
+        public int n_enemy = 3;
+        int n_count = 0;
 
         private float timer;
         //private int spawned = 0;
@@ -30,15 +32,16 @@ namespace Nightmare
 
         void Update()
         {
-            if (isPaused)
+            if (isPaused || n_count >= n_enemy)
                 return;
 
-            timer -= Time.deltaTime;
             if (timer <= 0f)
             {
                 Spawn();
                 timer = spawnTime;
+                n_count++;
             }
+            timer -= Time.deltaTime;
         }
 
         void Spawn ()

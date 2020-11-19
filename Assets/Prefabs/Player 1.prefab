@@ -288,7 +288,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fa7f046ce321d4021b5e753bf1152916, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b98a7bdd5f0c9594c9f06054b19d8ba3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5271,6 +5271,7 @@ GameObject:
   - component: {fileID: 4438454983242462356}
   - component: {fileID: 4438454983242462358}
   - component: {fileID: 677841345}
+  - component: {fileID: 1398106950}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -5354,7 +5355,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9922a12f34d0a084aab32de985459723, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d54998d330b594dbfbc4bd297f5afba3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5454,7 +5455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   rotateSpeed: 4
-  useMouse: 0
+  useMouse: 1
 --- !u!114 &677841345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5471,8 +5472,18 @@ MonoBehaviour:
   currentHealth: 0
   healthSlider: {fileID: 0}
   damageImage: {fileID: 0}
-  deathClip: {fileID: 8300000, guid: d36a393bca4582043982db9089e1694f, type: 3}
+  deathClip: {fileID: 8300000, guid: 4e5b1d9b81ca6f6418fabdd62a372304, type: 3}
+  hurtClip: {fileID: 8300000, guid: d54998d330b594dbfbc4bd297f5afba3, type: 3}
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
   godMode: 0
+  isDead: 0
   damaged: 0
+--- !u!81 &1398106950
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4438454983242494581}
+  m_Enabled: 1
