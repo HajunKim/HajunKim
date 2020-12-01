@@ -129,7 +129,6 @@ namespace Nightmare
                         isVitalized = true;
                         audioSource.clip = vitalizedSound;
                         audioSource.Play();
-                        
                     }
                     else if (0.75f <= value && value < 0.833f)
                     {
