@@ -70,24 +70,16 @@ namespace Nightmare
             h = CrossPlatformInputManager.GetAxisRaw(Hkeyname);
             v = CrossPlatformInputManager.GetAxisRaw(Vkeyname);
 
+            // Animate the player.
+            Animating(h, v);
+
             // Move the player around the scene.
+            // byeol adding
             Move (h, v);
 
+            // Turn the player to face the mouse cursor.
+            Turning ();
 
-            if (playerHealth.currentHealth > 0){
-            // Store the input axes.
-                h = CrossPlatformInputManager.GetAxisRaw(Hkeyname);
-                v = CrossPlatformInputManager.GetAxisRaw(Vkeyname);
-                
-                // Move the player around the scene.
-                // byeol adding
-                Move (h, v);
-
-                // Turn the player to face the mouse cursor.
-                Turning ();
-
-                // Animate the player.
-                Animating (h, v);}
         }
 
 
@@ -107,10 +99,10 @@ namespace Nightmare
 
             gameObject.transform.forward = new Vector3(h, 0.0f, v);
 
-            if (movement != Vector3.zero)
-            {
-                //gameObject.transform.forward = movement;
-            }
+            //if (movement != Vector3.zero)
+            //{
+            //    gameObject.transform.forward = movement;
+            //}
         }
 
 
@@ -180,6 +172,7 @@ namespace Nightmare
             // Create a boolean that is true if either of the input axes is non-zero.
             bool walking = h != 0f || v != 0f;
 
+            if (walking)Debug.Log("is walking");
             // Tell the animator whether or not the player is walking.
             anim.SetBool ("IsWalking", walking);
         }

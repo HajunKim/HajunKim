@@ -2160,29 +2160,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bc4d2c48ac21924a89f7f6fa8961c90, type: 3}
---- !u!1 &89072021 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4438454983242494581, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-  m_PrefabInstance: {fileID: 1591923166}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &89072029
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89072021}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.2
-  m_Radius: 0.3
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0.2, y: 0.6, z: 0}
 --- !u!4 &90242360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4829409383418274143, guid: 63f8a93c249f1224bb13d619ffe51d3b, type: 3}
@@ -25601,10 +25578,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 304456634, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: b6b15470a8baf924baa380fd5e4f8f15, type: 3}
     - target: {fileID: 677841345, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: damageImage
       value: 
@@ -25613,25 +25586,9 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1264430094}
-    - target: {fileID: 4438454983242462357, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4438454983242462358, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-      propertyPath: useMouse
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4438454983242462359, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4438454983242494581, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: m_Name
       value: Player2P
-      objectReference: {fileID: 0}
-    - target: {fileID: 4438454983242494581, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4438454983242591819, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: m_RootOrder
@@ -25677,8 +25634,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4438454983242462357, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
 --- !u!1001 &1070949957
 PrefabInstance:
@@ -38839,25 +38795,9 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1385245550}
-    - target: {fileID: 4438454983242462358, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-      propertyPath: useMouse
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4438454983242462359, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4438454983242462359, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-      propertyPath: m_Center.y
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 4438454983242494581, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4438454983242494581, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4438454983242591819, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
       propertyPath: m_RootOrder
@@ -38903,8 +38843,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4438454983242462357, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
 --- !u!4 &1592062388 stripped
 Transform:
@@ -46932,29 +46871,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c616dfb3f5a7dd43be2793321854b18, type: 3}
---- !u!1 &1966170579 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4438454983242494581, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
-  m_PrefabInstance: {fileID: 1067985652}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &1966170588
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966170579}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.2
-  m_Radius: 0.5
-  m_SlopeLimit: 30
-  m_StepOffset: 0.1
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0.2, y: 0.6, z: 0}
 --- !u!4 &1966740394 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8836018232055525669, guid: 85b173a616ad5e24c8121e6226b203c6, type: 3}
@@ -49420,7 +49336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2054259652
 MonoBehaviour:
   m_ObjectHideFlags: 0
