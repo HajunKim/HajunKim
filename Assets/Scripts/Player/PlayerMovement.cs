@@ -12,6 +12,11 @@ namespace Nightmare
         Vector3 movement;                   // The vector to store the direction of the player's movement.
         Animator anim;                      // Reference to the animator component.
         Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
+        CharacterController controller;
+        private bool groundedPlayer;
+        private Vector3 playerVelocity;
+        private float gravityValue = -9.81f;
+
         float h;                            // up & down key amount.
         float v;                            // left & right key amount.
         string Hkeyname, Vkeyname;          // mapped key name of horizonal & vertical axis.(for multiplayer)
@@ -43,6 +48,7 @@ namespace Nightmare
             // Set up references.
             anim = GetComponent <Animator> ();
             playerRigidbody = GetComponent <Rigidbody> ();
+            controller = GetComponent<CharacterController>();
 
             StartPausible();
         }
@@ -60,7 +66,7 @@ namespace Nightmare
             // Store the input axes.
             h = CrossPlatformInputManager.GetAxisRaw(Hkeyname);
             v = CrossPlatformInputManager.GetAxisRaw(Vkeyname);
-            
+
             // Move the player around the scene.
             Move (h, v);
 
@@ -74,14 +80,24 @@ namespace Nightmare
 
         void Move (float h, float v)
         {
-            // Set the movement vector based on the axis input.
-            movement.Set (h, 0f, v);
-            
-            // Normalise the movement vector and make it proportional to the speed per second.
-            movement = movement.normalized * speed * Time.deltaTime;
+            groundedPlayer = controller.isGrounded;
+            float gravity = 0.0f;
+            if (!groundedPlayer)
+            {
+                gravity = -9.8f;
+            }
 
-            // Move the player to it's current position plus the movement.
-            playerRigidbody.MovePosition (transform.position + movement);
+            movement = new Vector3(h, gravity, v);
+            movement = movement.normalized * speed * Time.deltaTime;
+            Debug.Log(movement);
+            controller.Move(movement);
+
+            gameObject.transform.forward = new Vector3(h, 0.0f, v);
+
+            if (movement != Vector3.zero)
+            {
+                //gameObject.transform.forward = movement;
+            }
         }
 
 
