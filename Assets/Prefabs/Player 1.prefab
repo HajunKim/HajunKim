@@ -288,7 +288,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b98a7bdd5f0c9594c9f06054b19d8ba3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b6b15470a8baf924baa380fd5e4f8f15, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5266,12 +5266,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4438454983242591819}
   - component: {fileID: 4438454983232995835}
-  - component: {fileID: 4438454983242462357}
   - component: {fileID: 4438454983242462359}
   - component: {fileID: 4438454983242462356}
   - component: {fileID: 4438454983242462358}
   - component: {fileID: 677841345}
   - component: {fileID: 1398106950}
+  - component: {fileID: 1966170588}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -5315,22 +5315,6 @@ Animator:
   m_HasTransformHierarchy: 0
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &4438454983242462357
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4438454983242494581}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: Infinity
-  m_AngularDrag: Infinity
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!136 &4438454983242462359
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5340,7 +5324,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 4438454983242494581}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 1.2
   m_Direction: 1
@@ -5487,3 +5471,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4438454983242494581}
   m_Enabled: 1
+--- !u!143 &1966170588
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4438454983242494581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.2
+  m_Radius: 0.5
+  m_SlopeLimit: 30
+  m_StepOffset: 0.1
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0.2, y: 0.6, z: 0}
