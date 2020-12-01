@@ -12,7 +12,7 @@ public class SoundModule : MonoBehaviour
     private SoundAnalyzer soundAnalyzer;
 
     // verbose variable is for printing Debug.Log message
-    public bool verbose = false;
+    public bool verbose = true;
 
     // ***** RECORDING PART ***** //
     // using Unity's Audio components and Microphone
@@ -31,6 +31,7 @@ public class SoundModule : MonoBehaviour
     private int fs; // sample rate
     private const int nSamples = 2048; // number of samples for analyzing sound
     private const float refValue = 0.1f; // reference value for calculating dB
+    public float buffer_gain = 10.0f; // gain of buffer
 
     // Player's pitch & decibel value which is updated every frame 
     private float playerPitch = 440.0f; // Hz
@@ -96,12 +97,20 @@ public class SoundModule : MonoBehaviour
     void SetMicrophone()
     {
         audioSource = GetComponent<AudioSource>();
+        if (verbose)
+        {
+            for (int i = 0; i < Microphone.devices.Length; i++)
+            {
+                Debug.Log("microphone device: " + Microphone.devices[i].ToString());
+            }
+        }
         if (useMicrophone)
         {
             if (Microphone.devices.Length > 0)
             {
                 // select default device
                 selectedDevice = Microphone.devices[0].ToString();
+                Debug.Log("Select " + selectedDevice);
                 audioSource.outputAudioMixerGroup = mixerGroupMicrophone;
                 audioSource.clip = Microphone.Start(selectedDevice, false, 999, fs);
                 isRecording = Microphone.IsRecording(selectedDevice);
@@ -116,7 +125,10 @@ public class SoundModule : MonoBehaviour
     void AnalyzeSound()
     {
         audioSource.GetOutputData(buffer, 0); // fill array with samples
-
+        for (int i = 0; i < nSamples; i++)
+        {
+            buffer[i] = buffer[i] * buffer_gain;
+        }
         playerdB = soundAnalyzer.CalculateDecibel(buffer, nSamples, refValue);
         playerPitch = soundAnalyzer.DetectPitch(buffer, nSamples);
         playerNote = soundAnalyzer.GetNote(playerPitch);
