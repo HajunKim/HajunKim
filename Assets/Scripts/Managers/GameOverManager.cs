@@ -8,7 +8,7 @@ namespace Nightmare
     public class GameOverManager : MonoBehaviour
     {
         private PlayerHealth playerHealth;
-        private Target target;
+        private Target[] target;
         private float restartDelay = 5f;
         
         Animator anim;
@@ -23,13 +23,14 @@ namespace Nightmare
         void Awake()
         {
             playerHealth = FindObjectOfType<PlayerHealth>();
-            target = FindObjectOfType<Target>();
+            target = FindObjectsOfType<Target>();
             anim = GetComponent<Animator>();
         }
         void Update()
         {
             // If the target is activated
-            if (target.isVitalized)
+            //if (target.isVitalized)
+            if (AllTargetVitalized())
             {
                 timer += Time.deltaTime;
                 if (timer > waitingTime)
@@ -63,6 +64,17 @@ namespace Nightmare
                     SceneManager.LoadScene(scene.name);
                 }
             }
+        }
+
+        bool AllTargetVitalized()
+        {
+            int n_vitalized = 0;
+            for(int i=0; i < target.Length; i++)
+            {
+                if (target[i].isVitalized) n_vitalized++;
+            }
+            if (n_vitalized == target.Length) return true;
+            else return false;
         }
 
         //void Awake ()
