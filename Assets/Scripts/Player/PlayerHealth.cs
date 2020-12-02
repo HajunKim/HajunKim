@@ -37,12 +37,14 @@ namespace Nightmare
 
         public void ResetPlayer()
         {
+            Debug.Log("reset!");
             // Set the initial health of the player.
             playerMovement.enabled = true;
             playerShooting.enabled = true;
             currentHealth = startingHealth;
-            anim.ResetTrigger("IsDead");
+            
             isDead = false;
+            anim.SetBool("IsDead", isDead);
             anim.SetBool("IsWalking",true);
         }
 
@@ -121,8 +123,9 @@ namespace Nightmare
         {
             // Set the death flag so this function won't be called again.
 
-
+            // Tell the animator that the player is dead.
             isDead = true;
+            anim.SetBool("IsDead", isDead);
 
             // Turn off any remaining shooting effects.
             playerShooting.DisableEffects();
@@ -130,9 +133,6 @@ namespace Nightmare
             // Turn off the movement and shooting scripts.
             playerMovement.enabled = false;
             playerShooting.enabled = false;
-
-            // Tell the animator that the player is dead.
-            anim.SetTrigger("IsDead");
 
             // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
             playerAudio.clip = deathClip;

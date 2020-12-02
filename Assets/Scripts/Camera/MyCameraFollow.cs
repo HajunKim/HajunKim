@@ -10,7 +10,7 @@ public class MyCameraFollow : MonoBehaviour
     Vector3 offset;
 
     void Start(){
-        offset = transform.position -target.position;
+        offset = (transform.position -target.position);
 
     }
 

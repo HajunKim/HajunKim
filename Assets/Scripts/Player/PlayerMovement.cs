@@ -9,9 +9,11 @@ namespace Nightmare
         public float rotateSpeed = 4f;      // The spped of rotation
         public bool useMouse;               // use mouse or not(single play)
 
+        
         Vector3 movement;                   // The vector to store the direction of the player's movement.
         Animator anim;                      // Reference to the animator component.
         Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
+        PlayerHealth playerHealth;          // byeol
         float h;                            // up & down key amount.
         float v;                            // left & right key amount.
         string Hkeyname, Vkeyname;          // mapped key name of horizonal & vertical axis.(for multiplayer)
@@ -43,6 +45,7 @@ namespace Nightmare
             // Set up references.
             anim = GetComponent <Animator> ();
             playerRigidbody = GetComponent <Rigidbody> ();
+            playerHealth = GetComponent <PlayerHealth> (); // byeol
 
             StartPausible();
         }
@@ -56,19 +59,22 @@ namespace Nightmare
         {
             if (isPaused)
                 return;
- 
+
+
+            if (playerHealth.currentHealth > 0){
             // Store the input axes.
-            h = CrossPlatformInputManager.GetAxisRaw(Hkeyname);
-            v = CrossPlatformInputManager.GetAxisRaw(Vkeyname);
-            
-            // Move the player around the scene.
-            Move (h, v);
+                h = CrossPlatformInputManager.GetAxisRaw(Hkeyname);
+                v = CrossPlatformInputManager.GetAxisRaw(Vkeyname);
+                
+                // Move the player around the scene.
+                // byeol adding
+                Move (h, v);
 
-            // Turn the player to face the mouse cursor.
-            Turning ();
+                // Turn the player to face the mouse cursor.
+                Turning ();
 
-            // Animate the player.
-            Animating (h, v);
+                // Animate the player.
+                Animating (h, v);}
         }
 
 

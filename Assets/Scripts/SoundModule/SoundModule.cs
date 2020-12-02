@@ -12,7 +12,7 @@ public class SoundModule : MonoBehaviour
     private SoundAnalyzer soundAnalyzer;
 
     // verbose variable is for printing Debug.Log message
-    public bool verbose = false;
+    public bool verbose = true;
 
     // ***** RECORDING PART ***** //
     // using Unity's Audio components and Microphone
@@ -102,6 +102,7 @@ public class SoundModule : MonoBehaviour
             {
                 // select default device
                 selectedDevice = Microphone.devices[0].ToString();
+                Debug.Log(selectedDevice);
                 audioSource.outputAudioMixerGroup = mixerGroupMicrophone;
                 audioSource.clip = Microphone.Start(selectedDevice, false, 999, fs);
                 isRecording = Microphone.IsRecording(selectedDevice);
