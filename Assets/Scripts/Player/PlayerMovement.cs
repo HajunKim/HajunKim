@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
+using Rewired;
 
 namespace Nightmare
 {
@@ -21,18 +22,21 @@ namespace Nightmare
 
         float h;                            // up & down key amount.
         float v;                            // left & right key amount.
-        string Hkeyname, Vkeyname;          // mapped key name of horizonal & vertical axis.(for multiplayer)
-#if !MOBILE_INPUT
         int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
         float camRayLength = 100f;          // The length of the ray from the camera into the scene.
-#endif
+
+        // The Rewired player id of this character
+        public int playerId = 0;
+        private Player _player; // The Rewired Player
 
         void Awake ()
         {
-#if !MOBILE_INPUT
             // Create a layer mask for the floor layer.
             floorMask = LayerMask.GetMask ("Floor");
-#endif
+
+            // Get the Rewired Player object for this player and keep it for the duration of the character's lifetime
+            _player = ReInput.players.GetPlayer(playerId);
+
             GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
             if (player.Length > 1) useMouse = false;
             
@@ -42,10 +46,6 @@ namespace Nightmare
                 GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
                 camera.GetComponent<MyCameraFollow>().enabled = false;
             }
-
-            // Set key mappings
-            Hkeyname = this.gameObject.name.Equals("Player") ? "Horizontal" : "Horizontal2P";
-            Vkeyname = this.gameObject.name.Equals("Player") ? "Vertical" : "Vertical2P";
 
             // Set up references.
             anim = GetComponent <Animator> ();
@@ -65,10 +65,10 @@ namespace Nightmare
         {
             if (isPaused)
                 return;
- 
+
             // Store the input axes.
-            h = CrossPlatformInputManager.GetAxisRaw(Hkeyname);
-            v = CrossPlatformInputManager.GetAxisRaw(Vkeyname);
+            h = _player.GetAxis("Move Horizontal"); // get input by name or action id
+            v = _player.GetAxis("Move Vertical");
 
             // Animate the player.
             Animating(h, v);
@@ -85,6 +85,7 @@ namespace Nightmare
 
         void Move (float h, float v)
         {
+            if (h == 0 && v == 0) return;
             groundedPlayer = controller.isGrounded;
             float gravity = 0.0f;
             if (!groundedPlayer)
@@ -94,15 +95,14 @@ namespace Nightmare
 
             movement = new Vector3(h, gravity, v);
             movement = movement.normalized * speed * Time.deltaTime;
-            Debug.Log(movement);
             controller.Move(movement);
 
+            
             gameObject.transform.forward = new Vector3(h, 0.0f, v);
 
-            //if (movement != Vector3.zero)
-            //{
-            //    gameObject.transform.forward = movement;
-            //}
+            //gameObject.transform.Rotate(new Vector3(h, 0.0f, v));
+
+
         }
 
 
@@ -118,12 +118,13 @@ namespace Nightmare
                 }
                 Quaternion newRotation = Quaternion.LookRotation(movement);
 
-                playerRigidbody.rotation = Quaternion.Slerp(playerRigidbody.rotation, newRotation, rotateSpeed * Time.deltaTime);
+                gameObject.transform.rotation = Quaternion.Slerp(playerRigidbody.rotation, newRotation, rotateSpeed * Time.deltaTime);
             }
             else
             {
                 // mouse input
                 // Create a ray from the mouse cursor on screen in the direction of the camera.
+                Debug.Log("Mouse" + Input.mousePosition);
                 Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 // Create a RaycastHit variable to store information about what was hit by the ray.
@@ -142,7 +143,7 @@ namespace Nightmare
                     Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
 
                     // Set the player's rotation to this new rotation.
-                    playerRigidbody.MoveRotation(newRotatation);
+                    gameObject.transform.rotation = newRotatation;
                 }
             }
 #else

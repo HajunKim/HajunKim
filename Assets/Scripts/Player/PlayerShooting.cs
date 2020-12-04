@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using System.Text;
 using UnitySampleAssets.CrossPlatformInput;
+using Rewired;
 
 namespace Nightmare
 {
@@ -25,18 +26,20 @@ namespace Nightmare
 		public Light faceLight;
         float effectsDisplayTime = 0.2f;
         int grenadeStock = 99;
-        string F1keyname, F2keyname;          // mapped key name of Fire1, Fire2
+
+        // The Rewired player id of this character
+        public int playerId = 0;
+        private Player _player; // The Rewired Player
 
         private UnityAction listener;
 
         void Awake ()
         {
+            // Get the Rewired Player object for this player and keep it for the duration of the character's lifetime
+            _player = ReInput.players.GetPlayer(playerId);
+
             // Create a layer mask for the Shootable layer.
             shootableMask = LayerMask.GetMask ("Shootable", "Enemy");
-
-            // Set key mappings
-            F1keyname = this.gameObject.transform.parent.name.Equals("Player") ? "Fire1" : "Fire1_2P";
-            F2keyname = this.gameObject.transform.parent.name.Equals("Player") ? "Fire2" : "Fire2_2P";
 
             // Set up the references.
             gunParticles = GetComponent<ParticleSystem> ();
@@ -78,12 +81,12 @@ namespace Nightmare
                 //    ShootGrenade();
                 //}
 
-                // If the Fire1 button is being press and it's time to fire...
-                if (Input.GetButton(F1keyname))
+                if (_player.GetButtonDown("Fire"))
                 {
-                    // ... shoot the gun.
                     Shoot();
                 }
+
+            
             }
             
 #else
