@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 namespace Nightmare
@@ -8,7 +9,7 @@ namespace Nightmare
     public class Target : MonoBehaviour
     {
         Renderer targetColor;
-        public bool isVitalized = false;        
+        public bool isVitalized = false;
         GameObject[] player;
         bool playerInRange;
         int n_player;
@@ -19,9 +20,8 @@ namespace Nightmare
         float Theta = 0f;
         AudioSource audioSource;
         public AudioClip vitalizedSound;
-        //SoundModule soundModule;
-        //public Color c1 = Color.white;
-        //public Color c2 = new Color(1, 1, 1, 0);
+        public string targetNote;
+
         Light circleLight;
         float y = 0.0f;
         /*
@@ -35,12 +35,12 @@ namespace Nightmare
         */
         // Start is called before the first frame update
 
-        void Start() 
+        void Start()
         {
-            player = GameObject.FindGameObjectsWithTag ("Player");
+            player = GameObject.FindGameObjectsWithTag("Player");
             n_player = player.Length;
             targetColor = gameObject.GetComponent<Renderer>();
-            circleLight = GetComponent<Light> ();
+            circleLight = GetComponent<Light>();
             LineDrawer = GetComponent<LineRenderer>();
             audioSource = GetComponent<AudioSource>();
             //soundModule = GetComponent<SoundModule>();
@@ -48,12 +48,12 @@ namespace Nightmare
             //LineDrawer.SetColors(Color.blue, Color.blue);
 
         }
-        
 
 
-        void OnTriggerEnter (Collider other)
+
+        void OnTriggerEnter(Collider other)
         {
-            for (int i=0; i < n_player; i++)
+            for (int i = 0; i < n_player; i++)
             {
                 // If the entering collider is the player...
                 if (other.gameObject == player[i])
@@ -65,7 +65,7 @@ namespace Nightmare
             }
         }
 
-        void OnTriggerExit (Collider other)
+        void OnTriggerExit(Collider other)
         {
             for (int i = 0; i < n_player; i++)
             {
@@ -80,72 +80,101 @@ namespace Nightmare
             }
         }
 
+        Dictionary<string, Tuple<int, int, int>> noteColorMapping = new Dictionary<string, Tuple<int, int, int>>()
+        {
+            { "C", new Tuple<int, int, int>(255, 255, 255) },
+            { "C#", new Tuple<int, int, int>(128, 255, 0) },
+            { "D", new Tuple<int, int, int>(51, 102, 0) },
+            { "D#", new Tuple<int, int, int>(255, 0, 127) },
+            { "E", new Tuple<int, int, int>(204, 0, 0) },
+            { "F", new Tuple<int, int, int>(102, 0, 0) },
+            { "F#", new Tuple<int, int, int>(0, 204, 204) },
+            { "G", new Tuple<int, int, int>(0, 0, 255) },
+            { "G#", new Tuple<int, int, int>(0, 0, 153) },
+            { "A", new Tuple<int, int, int>(0, 0, 51) },
+            { "A#", new Tuple<int, int, int>(160, 160, 160) },
+            { "B", new Tuple<int, int, int>(0, 0, 0) },
+        };
+
         // Update is called once per frame
         void Update()
-        {
-            if(playerInRange)
+        {            
+            if (playerInRange)
             {
                 if (!isVitalized)
                 {
-                    //Debug.Log("on");
-                    //if() voice.on 
                     float value = SoundModule.Instance.GetPlayerNoteMappingValue();
-                    //float value = soundModule.GetPlayerNoteMappingValue();
-                    if (0.0f <= value && value < 0.0833f)
+                    string note = SoundModule.Instance.GetPlayerNote();
+                    note = note.Substring(0, note.Length - 1); //we are not using octave info
+                    if (note.Length > 0)
                     {
-                        targetColor.material.color = new Color(255, 255, 255);
+                        int r = noteColorMapping[note].Item1;
+                        int g = noteColorMapping[note].Item2;
+                        int b = noteColorMapping[note].Item3;
+                        targetColor.material.color = new Color(r,g,b);
                     }
-                    else if (0.0833f <= value && value < 0.166f)
-                    {
-                        targetColor.material.color = new Color(128, 255, 0);
-                    }
-                    else if (0.166f <= value && value < 0.25f)
-                    {
-                        targetColor.material.color = new Color(51, 102, 0);
-                    }
-                    else if (0.25f <= value && value < 0.315f)
-                    {
-                        targetColor.material.color = new Color(255, 0, 127);
-                    }
-                    else if (0.315f <= value && value < 0.416f)
-                    {
-                        targetColor.material.color = new Color(204, 0, 0);
-                    }
-                    else if (0.416 <= value && value < 0.5f)
-                    {
-                        targetColor.material.color = new Color(102, 0, 0);
-                    }
-                    else if (0.5f <= value && value < 0.583f)
-                    {
-                        targetColor.material.color = new Color(0, 204, 204);
-                    }
-                    else if (0.583f <= value && value < 0.666f)
-                    {
-                        targetColor.material.color = new Color(0, 0, 255);
-                    }
-                    else if (0.666f <= value && value < 0.75f)
-                    {
-                        targetColor.material.color = new Color(0, 0, 153);
-                        isVitalized = true;
-                        audioSource.clip = vitalizedSound;
-                        audioSource.Play();
-                    }
-                    else if (0.75f <= value && value < 0.833f)
-                    {
-                        targetColor.material.color = new Color(0, 0, 51);
-                    }
-                    else if (0.833f <= value && value < 0.916f)
-                    {
-                        targetColor.material.color = new Color(160, 160, 160);
-                    }
-                    else if (0.916f <= value && value < 1.0f)
-                    {
-                        targetColor.material.color = new Color(0, 0, 0);
-                    }
+                    //float value = SoundModule.Instance.GetPlayerNoteMappingValue();
+                    //string note = SoundModule.Instance.GetPlayerNote();
+                    //int r = noteColorMapping[note].Item1;
+                    //int g = noteColorMapping[note].Item2;
+                    //int b = noteColorMapping[note].Item3;
+                    ////targetColor.material.color = new Color(, 255 * value, 255 * value);
+                    //Debug.Log(note + r + g + b);
+                    //if (0.0f <= value && value < 0.0833f) // C
+                    //{
+                    //    targetColor.material.color = new Color(255, 255, 255);
+                    //}
+                    //else if (0.0833f <= value && value < 0.166f) // C#
+                    //{
+                    //    targetColor.material.color = new Color(128, 255, 0);
+                    //}
+                    //else if (0.166f <= value && value < 0.25f) // D
+                    //{
+                    //    targetColor.material.color = new Color(51, 102, 0);
+                    //}
+                    //else if (0.25f <= value && value < 0.315f) // D#
+                    //{
+                    //    targetColor.material.color = new Color(255, 0, 127);
+                    //}
+                    //else if (0.315f <= value && value < 0.416f) // E
+                    //{
+                    //    targetColor.material.color = new Color(204, 0, 0);
+                    //}
+                    //else if (0.416 <= value && value < 0.5f) // F
+                    //{
+                    //    targetColor.material.color = new Color(102, 0, 0);
+                    //}
+                    //else if (0.5f <= value && value < 0.583f) // F#
+                    //{
+                    //    targetColor.material.color = new Color(0, 204, 204);
+                    //}
+                    //else if (0.583f <= value && value < 0.666f) // G
+                    //{
+                    //    targetColor.material.color = new Color(0, 0, 255);
+                    //}
+                    //else if (0.666f <= value && value < 0.75f) // G#
+                    //{
+                    //    targetColor.material.color = new Color(0, 0, 153);
+                    //    isVitalized = true;
+                    //    audioSource.clip = vitalizedSound;
+                    //    audioSource.Play();
+                    //}
+                    //else if (0.75f <= value && value < 0.833f) // A
+                    //{
+                    //    targetColor.material.color = new Color(0, 0, 51);
+                    //}
+                    //else if (0.833f <= value && value < 0.916f) // A#
+                    //{
+                    //    targetColor.material.color = new Color(160, 160, 160);
+                    //}
+                    //else if (0.916f <= value && value < 1.0f) // B
+                    //{
+                    //    targetColor.material.color = new Color(0, 0, 0);
+                    //}
                 }
                 //if(isVitalized)
                 //{
-                 //   y += 0.002f;
+                //   y += 0.002f;
                 //}
                 //targetColor.material.color = new Color(255, 255, 255);
                 //new Color(233, 79, 55);

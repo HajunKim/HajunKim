@@ -39,6 +39,7 @@ public class SoundModule : MonoBehaviour
     private string playerNote = "A4"; // playerNote[0] == "A"
     private float playerNoteMappingValue = 0.0f;
     
+
     void Awake()
     {
         if (soundModule == null)

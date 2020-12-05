@@ -13,7 +13,6 @@ namespace Nightmare
         
         Vector3 movement;                   // The vector to store the direction of the player's movement.
         Animator anim;                      // Reference to the animator component.
-        Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
         PlayerHealth playerHealth;          // byeol
         CharacterController controller;
         private bool groundedPlayer;
@@ -49,7 +48,6 @@ namespace Nightmare
 
             // Set up references.
             anim = GetComponent <Animator> ();
-            playerRigidbody = GetComponent <Rigidbody> ();
             playerHealth = GetComponent <PlayerHealth> (); // byeol
             controller = GetComponent<CharacterController>();
 
@@ -108,8 +106,6 @@ namespace Nightmare
 
         void Turning ()
         {
-#if !MOBILE_INPUT
-            
             if (!useMouse)
             {
                 if (h == 0 && v == 0)
@@ -118,7 +114,7 @@ namespace Nightmare
                 }
                 Quaternion newRotation = Quaternion.LookRotation(movement);
 
-                gameObject.transform.rotation = Quaternion.Slerp(playerRigidbody.rotation, newRotation, rotateSpeed * Time.deltaTime);
+                //gameObject.transform.rotation = newRotation;
             }
             else
             {
@@ -140,31 +136,12 @@ namespace Nightmare
                     playerToMouse.y = 0f;
 
                     // Create a quaternion (rotation) based on looking down the vector from the player to the mouse.
-                    Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
+                    Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
 
                     // Set the player's rotation to this new rotation.
-                    gameObject.transform.rotation = newRotatation;
+                    gameObject.transform.rotation = newRotation;
                 }
             }
-#else
-
-            Vector3 turnDir = new Vector3(CrossPlatformInputManager.GetAxisRaw("Mouse X") , 0f , CrossPlatformInputManager.GetAxisRaw("Mouse Y"));
-
-            if (turnDir != Vector3.zero)
-            {
-                // Create a vector from the player to the point on the floor the raycast from the mouse hit.
-                Vector3 playerToMouse = (transform.position + turnDir) - transform.position;
-
-                // Ensure the vector is entirely along the floor plane.
-                playerToMouse.y = 0f;
-
-                // Create a quaternion (rotation) based on looking down the vector from the player to the mouse.
-                Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
-
-                // Set the player's rotation to this new rotation.
-                playerRigidbody.MoveRotation(newRotatation);
-            }
-#endif
         }
 
 
@@ -173,7 +150,6 @@ namespace Nightmare
             // Create a boolean that is true if either of the input axes is non-zero.
             bool walking = h != 0f || v != 0f;
 
-            if (walking)Debug.Log("is walking");
             // Tell the animator whether or not the player is walking.
             anim.SetBool ("IsWalking", walking);
         }
