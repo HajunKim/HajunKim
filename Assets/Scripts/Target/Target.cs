@@ -112,6 +112,14 @@ namespace Nightmare
                         int g = noteColorMapping[note].Item2;
                         int b = noteColorMapping[note].Item3;
                         targetColor.material.color = new Color(r,g,b);
+
+                        if (String.Equals(note, targetNote))
+                        {
+                            Debug.Log("Target Note : "+targetNote + " activated!");
+                            isVitalized = true;
+                            audioSource.clip = vitalizedSound;
+                            audioSource.Play();
+                        }
                     }
                     //float value = SoundModule.Instance.GetPlayerNoteMappingValue();
                     //string note = SoundModule.Instance.GetPlayerNote();
