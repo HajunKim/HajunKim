@@ -146,6 +146,7 @@ namespace Nightmare
                                 isVitalized = true;
                                 audioSource.clip = vitalizedSound;
                                 audioSource.Play();
+                                SoundModule.Instance.GamePhaseChange();
                             }
                             
                         }

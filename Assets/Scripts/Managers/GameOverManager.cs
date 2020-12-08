@@ -60,6 +60,7 @@ namespace Nightmare
                 if (restartTimer >= restartDelay)
                 {
                     // .. then reload the currently loaded level.
+                    SoundModule.Instance.GamePhaseReset();
                     Scene scene = SceneManager.GetActiveScene();
                     SceneManager.LoadScene(scene.name);
                 }

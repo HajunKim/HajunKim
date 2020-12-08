@@ -38,6 +38,8 @@ public class SoundModule : MonoBehaviour
     private float playerdB = -80.0f; // dB
     private string playerNote = "A4"; // playerNote[0] == "A"
     private float playerNoteMappingValue = 0.0f;
+
+    int gamePhase = 0;
     
 
     void Awake()
@@ -170,6 +172,21 @@ public class SoundModule : MonoBehaviour
         if (verbose) Debug.Log("mute on for " + timeAmount + " secs");
         if (!audioSource.mute) ChangeMuteState();
         Invoke("ChangeMuteState", timeAmount);
+    }
+
+    public void GamePhaseChange()
+    {
+        // If target activated, game phase changed
+        FMODUnity.StudioEventEmitter emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.SetParameter("gamePhase", ++gamePhase);
+        Debug.Log("Game phase is " + gamePhase);
+    }
+
+    public void GamePhaseReset()
+    {
+        FMODUnity.StudioEventEmitter emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        gamePhase = 0;
+        emitter.SetParameter("gamePhase",gamePhase);
     }
 }
 
