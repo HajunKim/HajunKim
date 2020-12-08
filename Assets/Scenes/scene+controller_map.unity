@@ -2074,6 +2074,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4438454983242494581, guid: 042ea76cfa3f3494aa039cf9bd0b35af, type: 3}
   m_PrefabInstance: {fileID: 1591923166}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &89072029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89072021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!4 &90242360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4829409383418274143, guid: 63f8a93c249f1224bb13d619ffe51d3b, type: 3}
@@ -21693,6 +21707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1015474826}
   - component: {fileID: 1015474827}
+  - component: {fileID: 1015474828}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: Untagged
@@ -21721,7 +21736,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015474825}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9b520f32e11064f7dbfcfab4b50e452a, type: 3}
@@ -21810,6 +21825,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1015474828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015474825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Music/BGM_conditional
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!4 &1017835147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2684646825983981947, guid: 44e6dd02cd89182468e0be88fa68e766, type: 3}
@@ -45705,7 +45743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2054259652
 MonoBehaviour:
   m_ObjectHideFlags: 0
