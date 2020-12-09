@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Tree_Large_Color_Red
-  m_Shader: {fileID: 4800000, guid: 84c1c5caed73c3646a18c8e2539aa271, type: 3}
+  m_Shader: {fileID: 4800000, guid: e9a0618df5f9fc644adc5c5b739b2b0c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_3CC75AC0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_F963469F:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_FEDE746A:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Albedo:
         m_Texture: {fileID: 2800000, guid: 7ea45a7a8bc7a4549b19dd223b380d2a, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -47,11 +59,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Emissive:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 4de30b3c31d15fb42ba513556b0b264e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -76,11 +100,17 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_22370713: 2
+    - Vector1_3992CCC7: 1
+    - Vector1_B248DF79: 0.3
+    - Vector1_B8E2FA07: 0
+    - Vector1_C6529BE: 0
     - _BumpScale: 1
     - _CullMode: 0
     - _Cutoff: 0.05
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Emissive_Intensity: 0
     - _GG: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -90,7 +120,9 @@ Material:
     - _LeavesWindSpeed: 0.313
     - _LeavesWindStrength: 0.01
     - _Metallic: 0
+    - _MetallicIntensity: 0
     - _Mode: 0
+    - _NormalIntensity: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SSSIntensity: 12.5
@@ -108,8 +140,13 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
+    - Color_2F8B3538: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_3FE1035C: {r: 0, g: 6, b: 0, a: 0}
+    - Vector2_5BCDA59A: {r: 6, g: 0, b: 0, a: 0}
     - _AlbedoTint: {r: 0.735849, g: 0.24644002, b: 0.25782162, a: 1}
     - _Color: {r: 1, g: 0.82173985, b: 0.23113209, a: 1}
+    - _ColorTint: {r: 0.5754717, g: 0.14929691, b: 0.14929691, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     - _SubsurfaceColor: {r: 1, g: 0.17452827, b: 0.26023296, a: 1}
+  m_BuildTextureStacks: []
