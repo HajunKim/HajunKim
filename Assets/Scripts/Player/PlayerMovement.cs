@@ -21,6 +21,8 @@ namespace Nightmare
 
         float h;                            // up & down key amount.
         float v;                            // left & right key amount.
+        float turn_h;
+        float turn_v;
         int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
         float camRayLength = 100f;          // The length of the ray from the camera into the scene.
 
@@ -68,6 +70,9 @@ namespace Nightmare
             h = _player.GetAxis("Move Horizontal"); // get input by name or action id
             v = _player.GetAxis("Move Vertical");
 
+            turn_h = _player.GetAxis("Perspective Horizontal");
+            turn_v = _player.GetAxis("Perspective Vertical");
+
             // Animate the player.
             Animating(h, v);
 
@@ -76,7 +81,7 @@ namespace Nightmare
             Move (h, v);
 
             // Turn the player to face the mouse cursor.
-            Turning ();
+            Turning (turn_h, turn_v);
 
         }
 
@@ -104,23 +109,24 @@ namespace Nightmare
         }
 
 
-        void Turning ()
+        void Turning (float turn_h, float turn_v)
         {
             if (!useMouse)
             {
-                if (h == 0 && v == 0)
+                if (turn_h == 0 && turn_v == 0)
                 {
                     return; // no movement, no turn
                 }
-                Quaternion newRotation = Quaternion.LookRotation(movement);
+                Vector3 turn_angle = new Vector3(turn_h, 0, turn_v);
+                Quaternion newRotation = Quaternion.LookRotation(turn_angle);
+                
 
-                //gameObject.transform.rotation = newRotation;
+                gameObject.transform.rotation = newRotation;
             }
             else
             {
                 // mouse input
                 // Create a ray from the mouse cursor on screen in the direction of the camera.
-                Debug.Log("Mouse" + Input.mousePosition);
                 Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 // Create a RaycastHit variable to store information about what was hit by the ray.
