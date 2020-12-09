@@ -25,6 +25,11 @@ namespace Nightmare
         private int currentCnt = 0; // count number of frames with success of targetNote 
         public int targetActivateCnt = 50; // number of frames for targetActivate
 
+
+        
+
+        // public Dictionary noteColorMapping; // byeol
+
         Light circleLight;
         float y = 0.0f;
         /*
@@ -40,6 +45,12 @@ namespace Nightmare
 
         void Start()
         {
+            GameObject NoteHintChild1;
+            GameObject NoteHintChild2;
+            NoteHintChild1 = transform.GetChild(0).gameObject;
+            NoteHintChild2 = NoteHintChild1.transform.GetChild(0).gameObject; // byeol
+            Renderer NoteColor;
+
             player = GameObject.FindGameObjectsWithTag("Player");
             n_player = player.Length;
             targetColor = gameObject.GetComponent<Renderer>();
@@ -49,6 +60,14 @@ namespace Nightmare
             //soundModule = GetComponent<SoundModule>();
             //LineDrawer.material = new Materia l(Shader.Find("Particles/Alpha Blended"));
             //LineDrawer.SetColors(Color.blue, Color.blue);
+
+            NoteColor = NoteHintChild2.GetComponent<Renderer>(); // byeol
+            int R = noteColorMapping[targetNote].Item1;
+            int G = noteColorMapping[targetNote].Item2;
+            int B = noteColorMapping[targetNote].Item3;
+            Color C = new Color(R, G, B);
+            Debug.Log("R "+R+"G "+G+"B "+B);
+            NoteColor.material.color = C;
 
         }
 
@@ -83,7 +102,7 @@ namespace Nightmare
             }
         }
 
-        Dictionary<string, Tuple<int, int, int>> noteColorMapping = new Dictionary<string, Tuple<int, int, int>>()
+        public Dictionary<string, Tuple<int, int, int>> noteColorMapping = new Dictionary<string, Tuple<int, int, int>>()
         {
             { "C", new Tuple<int, int, int>(255, 255, 255) },
             { "C#", new Tuple<int, int, int>(128, 255, 0) },
