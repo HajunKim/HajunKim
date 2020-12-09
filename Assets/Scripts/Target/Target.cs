@@ -166,7 +166,7 @@ namespace Nightmare
                                 audioSource.clip = vitalizedSound;
                                 audioSource.loop = false;
                                 audioSource.Play();
-                                for (int i = 0; i <transform.childCount; i++)
+                                for (int i = 1; i <transform.childCount; i++)
                                 {
                                     ParticleSystem effect = transform.GetChild(i).GetComponent<ParticleSystem>();
                                     effect.Play();
