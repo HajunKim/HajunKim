@@ -17,6 +17,8 @@ namespace Nightmare
         CapsuleCollider capsuleCollider;
         EnemyMovement enemyMovement;
 
+        float target_y;
+
         void Awake ()
         {
             anim = GetComponent <Animator> ();
@@ -43,8 +45,10 @@ namespace Nightmare
             if (IsDead() & isSink)
             {
                 transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
-
-                if (transform.position.y < -5f)
+                float y_diff = target_y - transform.position.y;
+                
+                // 5f;
+                if (y_diff > 1f)
                 {
                     Destroy(this.gameObject);
                 }
@@ -80,6 +84,7 @@ namespace Nightmare
         void Death ()
         {
             EventManager.TriggerEvent("Sound", this.transform.position);
+            target_y = this.transform.position.y;
             anim.SetTrigger("Dead");
 
             enemyAudio.clip = deathClip;

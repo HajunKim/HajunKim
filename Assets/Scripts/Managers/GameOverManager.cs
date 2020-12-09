@@ -13,9 +13,9 @@ namespace Nightmare
         
         Animator anim;
         float restartTimer;
-        bool isEnding = false;
+        public bool isEnding = false;
         float timer = 0.0f;
-        int waitingTime = 2;
+        int waitingTime = 1;
 
         LevelManager lm;
         private UnityEvent listener;
@@ -35,12 +35,15 @@ namespace Nightmare
                 timer += Time.deltaTime;
                 if (timer > waitingTime)
                 {
-                    anim.SetTrigger("Win");
+                    //anim.SetTrigger("Win");
                     isEnding = true;
                     //Action
                     timer = 0;
+
+                    
                 }
             }
+            
             // If the player has run out of health...
 
             // else if (playerHealth.currentHealth <= 0)
@@ -53,17 +56,27 @@ namespace Nightmare
             // if ending condition met 
             if (isEnding)
             {
-                // .. increment a timer to count up to restarting.
-                restartTimer += Time.deltaTime;
+                // delete all enemy
+                    GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
+                    for (int i=0; i<enemy.Length; i++){
+                        //Destroy(enemy[i]);
+                        enemy[i].GetComponent<EnemyHealth>().TakeDamage(1000, new Vector3(0,0,0));
+                    }
+                // restart button up 
+                GameObject[] UIs = GameObject.FindGameObjectsWithTag("HP_UI");
+                for(int i=0; i<UIs.Length; i++) Destroy(UIs[i]);
 
-                // .. if it reaches the restart delay...
-                if (restartTimer >= restartDelay)
-                {
-                    // .. then reload the currently loaded level.
-                    SoundModule.Instance.GamePhaseReset();
-                    Scene scene = SceneManager.GetActiveScene();
-                    SceneManager.LoadScene(scene.name);
-                }
+                // // .. increment a timer to count up to restarting.
+                // restartTimer += Time.deltaTime;
+
+                // // .. if it reaches the restart delay...
+                // if (restartTimer >= restartDelay)
+                // {
+                //     // .. then reload the currently loaded level.
+                //     SoundModule.Instance.GamePhaseReset();
+                //     Scene scene = SceneManager.GetActiveScene();
+                //     SceneManager.LoadScene(scene.name);
+                // }
             }
         }
 
