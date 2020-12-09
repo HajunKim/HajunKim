@@ -145,7 +145,13 @@ namespace Nightmare
                                 Debug.Log("Target Note : " + targetNote + " activated!");
                                 isVitalized = true;
                                 audioSource.clip = vitalizedSound;
+                                audioSource.loop = false;
                                 audioSource.Play();
+                                for (int i = 0; i <transform.childCount; i++)
+                                {
+                                    ParticleSystem effect = transform.GetChild(i).GetComponent<ParticleSystem>();
+                                    effect.Play();
+                                }
                                 SoundModule.Instance.GamePhaseChange();
                             }
                             
