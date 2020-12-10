@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using System.Text;
 using UnitySampleAssets.CrossPlatformInput;
 using Rewired;
+using MText;
 
 namespace Nightmare
 {
@@ -152,9 +153,30 @@ namespace Nightmare
                     // ... the enemy should take damage.
                     enemyHealth.TakeDamage (damagePerShot, shootHit.point);
                 }
+                else
+                {
+                    if (shootHit.collider.tag == "Button")
+                    {   
+                        if(shootHit.collider.gameObject.name == "Button3")
+                        {
+                            MText_UI_Button Button3 = shootHit.collider.GetComponent <MText_UI_Button> ();
+                            Button3.PressButton();
+                        }
 
+                        else if(shootHit.collider.gameObject.name == "Button1")
+                        {
+                            MText_UI_Button Button1 = shootHit.collider.GetComponent <MText_UI_Button> ();
+                            Button1.PressButton();
+                        }
+                    gunLine.SetPosition (1, shootHit.point);
+
+                    }
+                    else{
+                        gunLine.SetPosition (1, shootHit.point);
+                    }
+                }
                 // Set the second position of the line renderer to the point the raycast hit.
-                gunLine.SetPosition (1, shootHit.point);
+            
             }
             // If the raycast didn't hit anything on the shootable layer...
             else
