@@ -104,14 +104,14 @@ namespace Nightmare
 
         public Dictionary<string, Tuple<int, int, int>> noteColorMapping = new Dictionary<string, Tuple<int, int, int>>()
         {
-            { "C", new Tuple<int, int, int>(255, 255, 255) },
+            { "C", new Tuple<int, int, int>(255, 255, 255) }, // White
             { "C#", new Tuple<int, int, int>(128, 255, 0) },
             { "D", new Tuple<int, int, int>(51, 102, 0) },
             { "D#", new Tuple<int, int, int>(255, 0, 127) },
-            { "E", new Tuple<int, int, int>(204, 0, 0) },
+            { "E", new Tuple<int, int, int>(204, 0, 0) }, // Red
             { "F", new Tuple<int, int, int>(102, 0, 0) },
             { "F#", new Tuple<int, int, int>(0, 204, 204) },
-            { "G", new Tuple<int, int, int>(0, 0, 255) },
+            { "G", new Tuple<int, int, int>(0, 0, 255) },  //Blue
             { "G#", new Tuple<int, int, int>(0, 0, 153) },
             { "A", new Tuple<int, int, int>(0, 0, 51) },
             { "A#", new Tuple<int, int, int>(160, 160, 160) },
@@ -146,9 +146,9 @@ namespace Nightmare
                     note = note.Substring(0, note.Length - 1); //we are not using octave info
                     if (note.Length > 0)
                     {
-                        int r = noteColorMapping[note].Item1;
-                        int g = noteColorMapping[note].Item2;
-                        int b = noteColorMapping[note].Item3;
+                        float r = noteColorMapping[note].Item1;
+                        float g = noteColorMapping[note].Item2;
+                        float b = noteColorMapping[note].Item3;
                         
                         if (String.Equals(note, targetNote))
                         {
@@ -175,8 +175,14 @@ namespace Nightmare
                             }
                             
                         }
-                        Color c = new Color(r, g, b);
-                        c.a = 0.8f+ 0.2f*(float)currentCnt / (float)targetActivateCnt; // 0 ~ 1
+                        //Color c = new Color(r, g, b);
+                        float alpha = 0.5f+ 0.5f*(float)currentCnt / (float)targetActivateCnt; // 0 ~ 1
+                        float new_r = alpha * r;
+                        float new_g = alpha * g;
+                        float new_b = alpha * b;
+                        Debug.Log("prev " + r + " " + g + " " + b);
+                        Debug.Log("new " + new_r + " " + new_g + " " + new_b);
+                        Color c = new Color((int)new_r, (int)new_g, (int)new_b);
                         targetColor.material.color = c;
                         //targetColor.material.SetFloat("_Metallic", alpha);
 
