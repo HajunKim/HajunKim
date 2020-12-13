@@ -130,6 +130,8 @@ class SoundAnalyzer
         float baseFreq;
         float hardMode = 5.0f;
         float easyMode = 20.0f;
+        float minLogDiff = 100.0f;
+        string tempNote = "";
 
         foreach (var note in this.noteBaseFreqs)
         {
@@ -137,6 +139,11 @@ class SoundAnalyzer
 
             for (int i = 0; i < 9; i++)
             {
+                if (minLogDiff > Mathf.Abs(Mathf.Log10(freq) - Mathf.Log10(baseFreq))){
+                    minLogDiff = Mathf.Abs(Mathf.Log10(freq) - Mathf.Log10(baseFreq));
+                    tempNote = note.Key + i;
+                }
+
                 if ((freq >= baseFreq - easyMode) && (freq < baseFreq + easyMode) || (freq == baseFreq))
                 {
                     return note.Key + i;
@@ -145,8 +152,8 @@ class SoundAnalyzer
                 baseFreq *= 2;
             }
         }
-
-        return "";
+        if (String.Equals(tempNote, "C0")) return "";
+        else return tempNote;
     }
 
     public float GetNoteMappingValue(string playerNote)

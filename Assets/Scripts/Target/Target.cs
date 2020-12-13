@@ -66,9 +66,9 @@ namespace Nightmare
             int G = noteColorMapping[targetNote].Item2;
             int B = noteColorMapping[targetNote].Item3;
             Color C = new Color(R, G, B);
-            Debug.Log("R "+R+"G "+G+"B "+B);
+            //Debug.Log("R "+R+"G "+G+"B "+B);
             NoteColor.material.color = C;
-
+            NoteColor.material.SetFloat("_Hue", noteValueMapping[targetNote]/12.0f);
         }
 
 
@@ -102,6 +102,22 @@ namespace Nightmare
             }
         }
 
+        public Dictionary<string, float> noteValueMapping = new Dictionary<string, float>()
+        {
+            { "C", 1.0f },
+            { "C#", 2.0f },
+            { "D", 3.0f },
+            { "D#", 4.0f },
+            { "E", 5.0f },
+            { "F", 6.0f },
+            { "F#", 7.0f },
+            { "G", 8.0f },
+            { "G#", 9.0f },
+            { "A", 10.0f },
+            { "A#", 11.0f },
+            { "B", 12.0f },
+        };
+
         public Dictionary<string, Tuple<int, int, int>> noteColorMapping = new Dictionary<string, Tuple<int, int, int>>()
         {
             { "C", new Tuple<int, int, int>(255, 255, 255) }, // White
@@ -116,6 +132,19 @@ namespace Nightmare
             { "A", new Tuple<int, int, int>(0, 0, 51) },
             { "A#", new Tuple<int, int, int>(160, 160, 160) },
             { "B", new Tuple<int, int, int>(0, 0, 0) },
+
+            // { "C", new Tuple<int, int, int>(205, 46, 42) }, // White
+            // { "C#", new Tuple<int, int, int>(212, 94, 40) },
+            // { "D", new Tuple<int, int, int>(216, 140, 50) },
+            // { "D#", new Tuple<int, int, int>(222, 183, 62) },
+            // { "E", new Tuple<int, int, int>(228, 226, 75) }, // Red
+            // { "F", new Tuple<int, int, int>(178, 207, 67) },
+            // { "F#", new Tuple<int, int, int>(100, 176, 55) },
+            // { "G", new Tuple<int, int, int>(58, 130, 176) },  //Blue
+            // { "G#", new Tuple<int, int, int>(33, 79, 173) },
+            // { "A", new Tuple<int, int, int>(30, 26, 173) },
+            // { "A#", new Tuple<int, int, int>(106, 34, 169) },
+            // { "B", new Tuple<int, int, int>(164, 40, 108) },
         };
 
         // Update is called once per frame
@@ -142,6 +171,7 @@ namespace Nightmare
                 {
                     float value = SoundModule.Instance.GetPlayerNoteMappingValue();
                     string note = SoundModule.Instance.GetPlayerNote();
+                    Debug.Log("Current note : " + note);
                     if (note[note.Length - 1] < '2' || note[note.Length-1] > '5') return; // freq filtering by octave
                     note = note.Substring(0, note.Length - 1); //we are not using octave info
                     if (note.Length > 0)
@@ -175,15 +205,22 @@ namespace Nightmare
                             }
                             
                         }
-                        //Color c = new Color(r, g, b);
-                        float alpha = 0.5f+ 0.5f*(float)currentCnt / (float)targetActivateCnt; // 0 ~ 1
+                        Color c = new Color(r, g, b);
+                        //float alpha = 0.5f+ 0.5f*(float)currentCnt / (float)targetActivateCnt; // 0 ~ 1
+                        float alpha = 1.0f;
                         float new_r = alpha * r;
                         float new_g = alpha * g;
                         float new_b = alpha * b;
-                        Debug.Log("prev " + r + " " + g + " " + b);
-                        Debug.Log("new " + new_r + " " + new_g + " " + new_b);
-                        Color c = new Color((int)new_r, (int)new_g, (int)new_b);
-                        targetColor.material.color = c;
+                        //Debug.Log("prev " + r + " " + g + " " + b);
+                        //Debug.Log("new " + new_r + " " + new_g + " " + new_b);
+                        //Color c = new Color((int)new_r, (int)new_g, (int)new_b);
+                        //targetColor.material.SetColor("_MyBaseColor", new Color(r,g,b,0));
+                        //targetColor.material.SetColor("_BaseColor", new Color(r,g,b,0));
+                        //Debug.Log("material name " + targetColor.material.name);
+                        //targetColor.material.color = c;
+                        targetColor.material.SetFloat("_Hue", value);
+                        //targetColor.material.SetVector("_Mycolor", new Vector4(r,g,b,0));
+                        //targetColor.material.SetColor("_EmissionColor", c);
                         //targetColor.material.SetFloat("_Metallic", alpha);
 
                         prevNote = note;
