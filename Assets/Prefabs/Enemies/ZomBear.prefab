@@ -54,8 +54,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c236aa7ad6dcabe47abc7d2cf903ae71, type: 3}
-  m_Controller: {fileID: 9100000, guid: c52ac7f94fab3014b8a6c296e1705836, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 0a0723bf409414124a897ef8760c1d09, type: 3}
+  m_Controller: {fileID: 9100000, guid: e77e33810d9ed40f685dfc7305835d8a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -10263,3 +10263,4 @@ MonoBehaviour:
   enemy: {fileID: 0}
   spawnTime: 3
   spawnPoints: []
+  n_enemy: 3
