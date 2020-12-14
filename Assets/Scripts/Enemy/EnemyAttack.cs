@@ -91,7 +91,7 @@ namespace Nightmare
                     n_death_player++;
                 }
             }
-            if (n_death_player == n_player) anim.SetTrigger("PlayerDead");
+            if (n_death_player == n_player) anim.SetBool("PlayerDead",true);
         }
 
         void Attack ()

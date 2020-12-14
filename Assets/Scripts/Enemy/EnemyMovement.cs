@@ -23,9 +23,11 @@ namespace Nightmare
         public float timer = 0f;
         int n_player;
         int target_player;
+        Animator anim;
 
         void Awake ()
         {
+            anim = GetComponent <Animator> ();
             player = GameObject.FindGameObjectsWithTag("Player");
             n_player = player.Length;
             target_player = Random.Range(0, n_player);
@@ -76,6 +78,7 @@ namespace Nightmare
                         {
                             target_player = i;
                             nav.SetDestination(playerPosition[target_player].position);
+                            anim.SetBool("PlayerDead",false);
                             break;
                         }
                     }

@@ -30,7 +30,7 @@ namespace Nightmare
             anim = GetComponent<Animator>();
             playerAudio = GetComponent<AudioSource>();
             playerMovement = GetComponent<PlayerMovement>(); // just use script name
-            playerShooting = GetComponentInChildren<PlayerShooting>();
+            //playerShooting = GetComponentInChildren<PlayerShooting>();
 
             ResetPlayer();
         }
@@ -40,7 +40,7 @@ namespace Nightmare
             Debug.Log("reset!");
             // Set the initial health of the player.
             playerMovement.enabled = true;
-            playerShooting.enabled = true;
+            //playerShooting.enabled = true;
             currentHealth = startingHealth;
             
             isDead = false;
@@ -128,11 +128,11 @@ namespace Nightmare
             anim.SetBool("IsDead", isDead);
 
             // Turn off any remaining shooting effects.
-            playerShooting.DisableEffects();
+            //playerShooting.DisableEffects();
 
             // Turn off the movement and shooting scripts.
             playerMovement.enabled = false;
-            playerShooting.enabled = false;
+            //playerShooting.enabled = false;
 
             // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
             playerAudio.clip = deathClip;

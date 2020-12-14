@@ -19,12 +19,14 @@ namespace Nightmare
 
         LevelManager lm;
         private UnityEvent listener;
+        AudioSource audioSource;
 
         void Awake()
         {
             playerHealth = FindObjectOfType<PlayerHealth>();
             target = FindObjectsOfType<Target>();
             anim = GetComponent<Animator>();
+            audioSource = GetComponent<AudioSource>();
         }
         void Update()
         {
@@ -32,6 +34,7 @@ namespace Nightmare
             //if (target.isVitalized)
             if (AllTargetVitalized())
             {
+                audioSource.Play();
                 timer += Time.deltaTime;
                 if (timer > waitingTime)
                 {
