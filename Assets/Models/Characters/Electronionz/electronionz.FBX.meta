@@ -60,7 +60,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.5100967
-        functionName: Attack
+        functionName: PlayBossSound
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: b48fd15c549b947d0829c60f0a2f5479, type: 3}
         floatParameter: 0

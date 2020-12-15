@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
 
 namespace Nightmare
 {
@@ -17,6 +19,13 @@ namespace Nightmare
         int n_player;
         int target_player; // target player that will be damaged
         float particle_speed = 2.0f;
+        AudioSource audioSource;
+        public AudioClip bossClip;
+        public AudioClip enemyHurtClip; 
+        public string targetNote;
+        int randomNoteNumber;
+
+        string[] notes = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
 
         void Awake ()
         {
@@ -30,7 +39,7 @@ namespace Nightmare
             }
             enemyHealth = GetComponent<EnemyHealth>();
             anim = GetComponent <Animator> ();
-
+            audioSource = GetComponent <AudioSource> ();
             StartPausible();
         }
 
@@ -49,12 +58,22 @@ namespace Nightmare
                     // ... the player is in range.
                     playerInRange = true;
                     anim.SetBool("PlayerInRange",playerInRange);
+                    PlayBossSound();
                     // particle play !
+                    // Random note select
+                    randomNoteNumber = UnityEngine.Random.Range(0,notes.Length);
+                    targetNote = notes[randomNoteNumber];
+                    
+                    // note color
+                    var c_tuple = noteColorMapping[targetNote];
+                    Color c = new Color(c_tuple.Item1/255.0f, c_tuple.Item2/255.0f, c_tuple.Item3/255.0f);
                     foreach (Transform child in transform) 
                     {
                         if (child.CompareTag ("BossParticle")) 
                         {
                             ParticleSystem effect = child.gameObject.GetComponent<ParticleSystem>();
+                            var ps = effect.main;
+                            ps.startColor = c;
                             effect.Play();
                             effect.playbackSpeed = particle_speed;   
                         }
@@ -112,6 +131,15 @@ namespace Nightmare
             // If the player has health to lose...
             if (playerHealth[target_player].currentHealth > 0 && playerInRange)
             {
+                string note = SoundModule.Instance.GetPlayerNote();
+                Debug.Log("Your note is " + note);
+                note = note.Substring(0, note.Length - 1); //we are not using octave info
+                if (SoundModule.Instance.GetPlayerDecibel() > 5 && String.Equals(note, targetNote))
+                {
+                    Debug.Log("Player is not attacked");
+                    return;
+                }
+                
                 // ... damage the player.
                 foreach (Transform child in transform) 
                 {
@@ -127,5 +155,29 @@ namespace Nightmare
                 // particle in player's position
             }
         }
+
+        void PlayBossSound()
+        {            
+            // Play BossClip
+            audioSource.clip = bossClip;
+            audioSource.Play();  
+            // FMOD argument emission
+        }
+
+        public Dictionary<string, Tuple<float, float, float>> noteColorMapping = new Dictionary<string, Tuple<float, float, float>>()
+        {
+            { "C", new Tuple<float, float, float>(255.0f, 255.0f, 255.0f) }, // White
+            { "C#", new Tuple<float, float, float>(128.0f, 255.0f, 0.0f) },
+            { "D", new Tuple<float, float, float>(51.0f, 102.0f, 0.0f) },
+            { "D#", new Tuple<float, float, float>(255.0f, 0.0f, 127.0f) },
+            { "E", new Tuple<float, float, float>(204.0f, 0.0f, 0.0f) }, // Red
+            { "F", new Tuple<float, float, float>(102.0f, 0.0f, 0.0f) },
+            { "F#", new Tuple<float, float, float>(0.0f, 204.0f, 204.0f) },
+            { "G", new Tuple<float, float, float>(0.0f, 0.0f, 255.0f) },  //Blue
+            { "G#", new Tuple<float, float, float>(0.0f, 0.0f, 153.0f) },
+            { "A", new Tuple<float, float, float>(0.0f, 0.0f, 51.0f) },
+            { "A#", new Tuple<float, float, float>(160.0f, 160.0f, 160.0f) },
+            { "B", new Tuple<float, float, float>(0.0f, 0.0f, 0.0f) },
+        };
     }
 }
