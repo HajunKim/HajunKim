@@ -120,8 +120,9 @@ namespace Nightmare
                 Vector3 turn_angle = new Vector3(turn_h, 0, turn_v);
                 Quaternion newRotation = Quaternion.LookRotation(turn_angle);
                 
+                gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
 
-                gameObject.transform.rotation = newRotation;
+                //gameObject.transform.rotation = newRotation;
             }
             else
             {
@@ -145,7 +146,8 @@ namespace Nightmare
                     Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
 
                     // Set the player's rotation to this new rotation.
-                    gameObject.transform.rotation = newRotation;
+                    gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
+                    //gameObject.transform.rotation = newRotation;
                 }
             }
         }
