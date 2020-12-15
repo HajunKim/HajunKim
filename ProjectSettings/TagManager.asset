@@ -8,6 +8,8 @@ TagManager:
   - HP_UI
   - Hint
   - Button
+  - BossParticle
+  - BossAttackParticle
   layers:
   - Default
   - TransparentFX
