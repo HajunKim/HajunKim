@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8090175166342170629}
   - component: {fileID: 3667829518309580031}
   - component: {fileID: 728002172389481624}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: electro1_eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 183193482647005185}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7150143153136110892}
   - component: {fileID: 499634905905766266}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: electro1_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7997094164617444442}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2864926612440667080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1436166404521359876}
   - component: {fileID: 4225812621267833761}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: electro1_horn_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1253546112811402375}
   - component: {fileID: 2479245241825046922}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: electro1_eyelid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3249196349796914381}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 8484235939494425703}
   - component: {fileID: 3926863878042615353}
   - component: {fileID: 1889946226633039685}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: electro1_eye_pattern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1273722110444909121}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7197585751381637032}
   - component: {fileID: 1238326557145746704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: electro1_horn_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +681,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6083496577633031796}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -712,7 +712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6272909521589261286}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ GameObject:
   - component: {fileID: 5372411921088444303}
   - component: {fileID: 4065107136337437331}
   - component: {fileID: 8526773438998141648}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: electro1_mouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +826,7 @@ GameObject:
   - component: {fileID: 9220169262316144738}
   - component: {fileID: 4170533206347801218}
   - component: {fileID: 8347825744066260616}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: electro1_horn_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -907,7 +907,7 @@ GameObject:
   - component: {fileID: 4180372630324049469}
   - component: {fileID: 2262952121776756891}
   - component: {fileID: 7756089406868649524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: electro1_act_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -986,7 +986,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3413371829924238302}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,7 +1020,7 @@ GameObject:
   - component: {fileID: 594727999408643637}
   - component: {fileID: 6286432073342467959}
   - component: {fileID: 8295473949560426329}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: electro1_act_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1099,7 +1099,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2301241712725029140}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1129,7 +1129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5958097758385334135}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1159,7 +1159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3551794149780489993}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\uC77C\uB809\uD2B8\uB85C2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1201,7 +1201,7 @@ GameObject:
   - component: {fileID: 6559497512160749980}
   - component: {fileID: 6559497512160749981}
   - component: {fileID: 6559497512160749978}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Electro_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1265,10 +1265,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.5
+  m_Radius: 1.07
+  m_Height: 1.95
   m_Direction: 1
-  m_Center: {x: 0.02, y: 0.53, z: -0.01}
+  m_Center: {x: 0.08, y: 0.53, z: -0.01}
 --- !u!82 &6559497512160749983
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1457,7 +1457,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2371950265863490414}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1493,7 +1493,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3975741208958001804}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1524,7 +1524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6710648976799622235}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 Neck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1555,7 +1555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4810084568933180870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1586,7 +1586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 323243776256600029}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bip002 R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

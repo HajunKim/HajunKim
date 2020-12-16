@@ -62,13 +62,13 @@ namespace Nightmare
             //LineDrawer.SetColors(Color.blue, Color.blue);
 
             NoteColor = NoteHintChild2.GetComponent<Renderer>(); // byeol
-            int R = noteColorMapping[targetNote].Item1;
-            int G = noteColorMapping[targetNote].Item2;
-            int B = noteColorMapping[targetNote].Item3;
+            float R = noteColorMapping[targetNote].Item1;
+            float G = noteColorMapping[targetNote].Item2;
+            float B = noteColorMapping[targetNote].Item3;
             Color C = new Color(R, G, B);
             //Debug.Log("R "+R+"G "+G+"B "+B);
             //NoteColor.material.color = C;
-            NoteColor.material.SetColor("_MyBaseColor", C);
+            NoteColor.material.SetVector("_MyBaseColor", C);
             //NoteColor.material.SetFloat("_Hue", noteValueMapping[targetNote]/12.0f);
         }
 
@@ -208,7 +208,8 @@ namespace Nightmare
                         }
                         Color c = new Color(r, g, b);
                         //float alpha = 0.5f+ 0.5f*(float)currentCnt / (float)targetActivateCnt; // 0 ~ 1
-                        float alpha = 1.0f;
+                        float alpha = (((float)currentCnt / (float)targetActivateCnt)); // 0 ~ 1
+                        //float alpha = 1.0f;
                         float new_r = alpha * r / 255.0f;
                         float new_g = alpha * g / 255.0f;
                         float new_b = alpha * b / 255.0f;
@@ -216,9 +217,11 @@ namespace Nightmare
                         //Debug.Log("new " + new_r + " " + new_g + " " + new_b);
                         //Color c = new Color((int)new_r, (int)new_g, (int)new_b);
                         targetColor.material.SetColor("_MyBaseColor", new Color(new_r,new_g,new_b,0));
+                        targetColor.material.SetFloat("_Alpha", alpha);
                         //targetColor.material.SetColor("_BaseColor", new Color(r,g,b,0));
                         //Debug.Log("material name " + targetColor.material.name);
                         //targetColor.material.color = c;
+                        //targetColor.material.setFloat("_Alpha", alpha);
                         //targetColor.material.SetFloat("_Hue", value);
                         //targetColor.material.SetVector("_Mycolor", new Vector4(r,g,b,0));
                         //targetColor.material.SetColor("_EmissionColor", c);

@@ -31,14 +31,14 @@ namespace Nightmare
         void OnEnable()
         {
             currentHealth = startingHealth;
-            SetKinematics(false);
+            // SetKinematics(false);
         }
 
-        private void SetKinematics(bool isKinematic)
-        {
-            capsuleCollider.isTrigger = isKinematic;
-            capsuleCollider.attachedRigidbody.isKinematic = isKinematic;
-        }
+        // private void SetKinematics(bool isKinematic)
+        // {
+        //     capsuleCollider.isTrigger = isKinematic;
+        //     capsuleCollider.attachedRigidbody.isKinematic = isKinematic;
+        // }
 
         void Update ()
         {
@@ -97,7 +97,7 @@ namespace Nightmare
             isSink = true;
             ScoreManager.score += scoreValue;
             GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
-            SetKinematics(true);
+            // SetKinematics(true);
         }
 
         public int CurrentHealth()
