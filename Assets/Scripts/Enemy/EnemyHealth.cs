@@ -16,7 +16,7 @@ namespace Nightmare
         ParticleSystem hitParticles;
         CapsuleCollider capsuleCollider;
         EnemyMovement enemyMovement;
-
+        public bool isBoss = false;
         float target_y;
 
         void Awake ()
@@ -71,14 +71,16 @@ namespace Nightmare
                 {
                     Death();
                 }
-                else
+                else if (!isBoss)
                 {
                     enemyMovement.GoToPlayer();
                 }
             }
-                
-            hitParticles.transform.position = hitPoint;
-            hitParticles.Play();
+            if (!isBoss)
+            {        
+                hitParticles.transform.position = hitPoint;
+                hitParticles.Play();
+            }
         }
 
         void Death ()
@@ -90,6 +92,18 @@ namespace Nightmare
             enemyAudio.clip = deathClip;
             enemyAudio.Play();
             //StartSinking();
+            if (isBoss)
+            {
+                foreach (Transform child in transform) 
+                {
+                    if (child.CompareTag ("BossParticle")) 
+                    {
+                        ParticleSystem effect = child.gameObject.GetComponent<ParticleSystem>();
+                        effect.Stop();
+                        
+                    }
+                }
+            }
         }
 
         public void StartSinking ()

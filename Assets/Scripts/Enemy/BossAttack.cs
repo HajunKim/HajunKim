@@ -23,7 +23,8 @@ namespace Nightmare
         public AudioClip bossClip;
         public AudioClip enemyHurtClip; 
         public string targetNote;
-        int randomNoteNumber;
+        public int reflectiveDamage;
+        public int randomNoteNumber;
 
         string[] notes = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
 
@@ -61,7 +62,8 @@ namespace Nightmare
                     PlayBossSound();
                     // particle play !
                     // Random note select
-                    randomNoteNumber = UnityEngine.Random.Range(0,notes.Length);
+                    randomNoteNumber = 4;
+                    //randomNoteNumber = UnityEngine.Random.Range(0,notes.Length);
                     targetNote = notes[randomNoteNumber];
                     
                     // note color
@@ -137,6 +139,8 @@ namespace Nightmare
                 if (SoundModule.Instance.GetPlayerDecibel() > 5 && String.Equals(note, targetNote))
                 {
                     Debug.Log("Player is not attacked");
+                    // Attack Boss
+                    enemyHealth.TakeDamage(reflectiveDamage, this.transform.position);
                     return;
                 }
                 
@@ -145,10 +149,10 @@ namespace Nightmare
                 {
                     if (child.CompareTag ("BossAttackParticle")) 
                     {
+                        Debug.Log("Boss Attack ! target player is " + target_player);
                         child.gameObject.transform.position = player[target_player].transform.position;
                         ParticleSystem effect = child.gameObject.GetComponent<ParticleSystem>();
                         effect.Play();
-                        
                     }
                 }
                 playerHealth[target_player].TakeDamage(attackDamage);

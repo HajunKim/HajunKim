@@ -374,7 +374,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 8434b04884c414ac6b468e10945685e6, type: 2}
   m_audioClip: {fileID: 8300000, guid: 02e6208ec76314158a9f548f51fe9f11, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.334
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -514,8 +514,10 @@ MonoBehaviour:
   timeBetweenAttacks: 1.7
   attackDamage: 200
   bossClip: {fileID: 8300000, guid: 6daa324f889994743ae7f3b5b695b686, type: 3}
-  enemyHurtClip: {fileID: 0}
+  enemyHurtClip: {fileID: 8300000, guid: 02e6208ec76314158a9f548f51fe9f11, type: 3}
   targetNote: 
+  reflectiveDamage: 80
+  randomNoteNumber: 0
 --- !u!114 &1165409345714127634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,11 +530,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa10cc87aff30c04dbe0aa648f5b6adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 150
+  startingHealth: 100
   sinkSpeed: 0.5
   scoreValue: 7
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
   currentHealth: 0
+  isBoss: 1
 --- !u!114 &1165409345714127637
 MonoBehaviour:
   m_ObjectHideFlags: 0
