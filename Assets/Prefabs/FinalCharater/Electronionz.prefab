@@ -512,7 +512,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1.7
-  attackDamage: 10
+  attackDamage: 200
+  bossClip: {fileID: 8300000, guid: 6daa324f889994743ae7f3b5b695b686, type: 3}
+  enemyHurtClip: {fileID: 0}
+  targetNote: 
 --- !u!114 &1165409345714127634
 MonoBehaviour:
   m_ObjectHideFlags: 0
